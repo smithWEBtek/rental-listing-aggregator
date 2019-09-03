@@ -8,7 +8,7 @@ services:
       - db
     command: ""
     environment:
-      CRAIGSLIST_URL: 'https://raleigh.craigslist.org'
+      CRAIGSLIST_URL: process.env.CRAIGSLIST_URL
       PADMAPPER_MAX_LON: -78.2830810546875
       PADMAPPER_MAX_LAT: 35.61064120176672
       PADMAPPER_MIN_LON: -79.2388916015625

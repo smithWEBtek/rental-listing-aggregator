@@ -3,6 +3,9 @@ FROM ruby:2.1.2
 RUN apt-get update && apt-get install -y wget
 RUN wget https://github.com/jwilder/dockerize/releases/download/v0.1.0/dockerize-linux-amd64-v0.1.0.tar.gz
 RUN tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.1.0.tar.gz
+RUN sudo apt-key adv --keyserver hkp://pool.sks-keyservers.net:80 --recv-keys 9D6D8F6BC857C906
+RUN sudo apt-key adv --keyserver hkp://pool.sks-keyservers.net:80 --recv-keys AA8E81B4331F7F50
+RUN sudo apt-key adv --keyserver hkp://pool.sks-keyservers.net:80 --recv-keys 7638D0442B90D010
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -10,8 +13,8 @@ COPY ./Gemfile /usr/src/app/Gemfile
 COPY ./Gemfile.lock /usr/src/app/Gemfile.lock
 
 RUN gem update --system && \
-    gem install bundler && \
-    bundle install
+  gem install bundler && \
+  bundle install
 
 COPY . /usr/src/app
 
